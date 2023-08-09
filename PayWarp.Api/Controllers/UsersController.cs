@@ -10,6 +10,8 @@ using PayWarp.Api.Services;
 
 namespace PayWarp.Api.Controllers;
 
+// Based on: https://youtu.be/v7q3pEK1EA0
+
 [ApiController]
 [Route("[controller]/[action]")]
 public class UsersController : ControllerBase
