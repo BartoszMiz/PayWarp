@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PayWarp.Api.Data;
+using PayWarp.Api.Data.Models;
+using PayWarp.Api.Services;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
 	options.UseSqlite(builder.Configuration.GetConnectionString("Database"));
 });
+builder.Services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+builder.Services.AddSingleton(builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>()!);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
